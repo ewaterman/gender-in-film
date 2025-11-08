@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 /**
- * Represents a single question pertaining to a character.
+ * Represents a single question pertaining to a character in a specific movie.
  */
 @Entity
 @Data
@@ -20,8 +20,8 @@ public class CharacterQuestion {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="character_id", nullable=false)
-    private Character character;
+    @JoinColumn(name="movie_character_id", nullable=false)
+    private MovieCharacter movieCharacter;
 
     @Enumerated(EnumType.STRING)
     @Column(name="question", nullable=false)

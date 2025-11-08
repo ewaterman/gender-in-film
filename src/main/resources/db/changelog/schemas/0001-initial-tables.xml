@@ -62,9 +62,6 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" unique="true" nullable="false"/>
             </column>
-            <column name="movie_id" type="int">
-                <constraints nullable="false" foreignKeyName="fk_character_movie" references="movie(id)"/>
-            </column>
             <column name="type" type="varchar">
                 <constraints nullable="false"/>
             </column>
@@ -76,6 +73,26 @@
     <changeSet id="0001-3" author="ewaterman">
         <preConditions onFail="MARK_RAN">
             <not>
+                <tableExists tableName="movie_character"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="movie_character">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="movie_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_movie_character_movie" references="movie(id)"/>
+            </column>
+            <column name="character_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_movie_character_character" references="character(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0001-4" author="ewaterman">
+        <preConditions onFail="MARK_RAN">
+            <not>
                 <tableExists tableName="character_question"/>
             </not>
         </preConditions>
@@ -84,8 +101,8 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="character_id" type="int">
-                <constraints nullable="false" foreignKeyName="fk_question_character" references="character(id)"/>
+            <column name="movie_character_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_question_movie_character" references="movie_character(id)"/>
             </column>
             <column name="question" type="varchar">
                 <constraints nullable="false"/>

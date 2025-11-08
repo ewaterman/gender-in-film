@@ -7,7 +7,7 @@ import java.util.List;
 
 import lombok.*;
 
-import com.ewaterman.genderinfilm.characters.Character;
+import com.ewaterman.genderinfilm.characters.MovieCharacter;
 
 @Entity
 @Data
@@ -22,7 +22,7 @@ public class Movie {
     private Long id;
 
     @OneToMany(mappedBy="movie", cascade=CascadeType.ALL)
-    private List<Character> characters = new ArrayList<>();
+    private List<MovieCharacter> movieCharacters = new ArrayList<>();
 
     @OneToMany(mappedBy="movie", cascade=CascadeType.ALL)
     private List<MovieQuestion> questions = new ArrayList<>();

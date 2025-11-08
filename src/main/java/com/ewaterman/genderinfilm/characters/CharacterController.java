@@ -17,8 +17,8 @@ public class CharacterController {
 
     private final CharacterService characterService;
 
-    public CharacterController(CharacterService characterSerice) {
-        this.characterService = characterSerice;
+    public CharacterController(CharacterService characterService) {
+        this.characterService = characterService;
     }
 
     @GetMapping("/{id}")

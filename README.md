@@ -8,36 +8,31 @@ Kind of like a transgender [Bechdel Test](https://bechdeltest.com/).
 Navigate to (insert url here) and search for the movie that you'd like to know about!
 
 
-## App Info
-- SpringBoot 3.3.2 with Java 22 and Thymeleaf
-- Postgres database
-- Liquibase for database migrations
-
-
 ## TODO
 - spring security to allow people to log in and add new movies/characters
 - create dockerfile for generating jar so that Java isn't a deployment requirement anymore
 - create indexes on all tables
 
 
-## Developer Instructions
+## Developer Info
+
+### App Spec
+- SpringBoot 3.3.2 with Java 22 and Thymeleaf
+- Postgres database
+- Liquibase for database migrations
 
 
 ### Setup
-- Install Java 22.
+- Install Java 22.0.1
+    - I use [SDKMAN!](https://sdkman.io/): `sdk install java 22.0.1-open` then `sdk use java 22.0.1-open` to apply it to only the current session or `sdk default java 22.0.1-open` to make it permanent.
 
 
 ### Running The App Via Docker
 1. [Install Docker](https://www.docker.com/)
 2. `./mvnw spring-boot:run`
 
-Internally, this run `docker-compose up` which will start the application and postgres in Docker containers
+Internally, this runs `docker-compose up` which will start the application and postgres in Docker containers
 (`app` and `db` respectively).
-
-
-### Running The App Via JAR
-1. `mvn package`
-2. `java -jar target/genderinfilm-0.0.1.jar`
 
 
 ### Creating A New Release
@@ -45,6 +40,8 @@ Internally, this run `docker-compose up` which will start the application and po
 2. Bring down the app: `docker-compose down`
 3. Generate a new jar: `./mvnw package`
 4. Generate a new tagged Docker image: `docker build . -t genderinfilm:0.0.1`
+
+You can also run the app via the JAR file with `java -jar target/genderinfilm-0.0.1.jar`
 
 
 ### Debugging
