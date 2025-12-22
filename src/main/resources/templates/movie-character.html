@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/root.html}"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <section layout:fragment="content">
+
+        <a th:href="@{/movies/{movieId}(movieId=${movieCharacter.movie.id})}">Back to movie</a>
+
+        <!-- TODO: character portrait -->
+
+        <form th:action="@{/movies/{movieId}/characters/{movieCharacterId}(movieId=${movieCharacter.movie.id},movieCharacterId=${movieCharacter.id})}"
+              th:method="delete"
+              onsubmit="return confirm('Are you sure you want to delete this character?');">
+            <button type="submit">Delete</button>
+        </form>
+
+        <p th:text="${movieCharacter.character.name}"></p>
+
+        <!-- Movie character test results -->
+        <div th:each="question : ${movieCharacter.questions}">
+            <p th:text="${question.question.displayText}"></p>
+            <!-- <p th:text="${question.question.extendedDisplayText}"></p>   https://www.w3schools.com/bootstrap4/bootstrap_tooltip.asp  -->
+            <p th:text="${question.answer}"></p>
+            <p th:text="${question.details}"></p>
+        </div>
+    </section>
+
+</body>
+</html>

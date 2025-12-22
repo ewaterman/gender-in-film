@@ -49,4 +49,8 @@ public enum CharacterQuestionType {
      * An expanded explanation of what the question means, to be used in a hover-over tooltip.
      */
     final String extendedDisplayText;
+
+    public String toString() {
+        return displayText;
+    }
 }

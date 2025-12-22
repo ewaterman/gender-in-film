@@ -36,4 +36,8 @@ public class MovieCharacter {
 
     @OneToMany(mappedBy="movieCharacter", cascade=CascadeType.ALL)
     private List<CharacterQuestion> questions = new ArrayList<>();
+
+    public String toString() {
+        return character + " in " + movie;
+    }
 }

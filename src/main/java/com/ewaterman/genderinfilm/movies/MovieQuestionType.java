@@ -12,7 +12,7 @@ public enum MovieQuestionType {
 
     TRANS_WRITER(
             "Has a transgender writer",
-            "Is one or more of the writer of the movie transgender or gender non-conforming?");
+            "Is one or more of the writers of the movie transgender or gender non-conforming?");
 
     /**
      * The text to display the field as.
@@ -23,4 +23,8 @@ public enum MovieQuestionType {
      * An expanded explanation of what the question means, to be used in a hover-over tooltip.
      */
     final String extendedDisplayText;
+
+    public String toString() {
+        return displayText;
+    }
 }

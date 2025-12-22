@@ -37,4 +37,7 @@ public class CharacterQuestion {
     @Column(name="details")
     private String details;
 
+    public String toString() {
+        return question + ": " + answer;
+    }
 }

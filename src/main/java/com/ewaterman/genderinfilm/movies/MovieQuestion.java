@@ -37,4 +37,7 @@ public class MovieQuestion {
     @Column(name="details")
     private String details;
 
+    public String toString() {
+        return question + ": " + answer;
+    }
 }

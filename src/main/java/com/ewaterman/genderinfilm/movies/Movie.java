@@ -41,4 +41,7 @@ public class Movie {
     @Column(name="tmdb_id", nullable=false)
     private String tmdbId;
 
+    public String toString() {
+        return name;
+    }
 }

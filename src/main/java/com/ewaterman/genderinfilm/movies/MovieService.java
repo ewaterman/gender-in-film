@@ -34,7 +34,7 @@ public class MovieService {
      * Initialize a new movie by populating a full list of (empty) questions. This makes creating the movie
      * much simpler for the frontend.
      */
-    public Movie initMovieWithQuestions() {
+    public Movie initMovie() {
         Movie movie = new Movie();
         List<MovieQuestion> questions = movie.getQuestions();
         for (MovieQuestionType questionType : MovieQuestionType.values()) {
@@ -71,6 +71,10 @@ public class MovieService {
     }
 
     public Movie save(Movie movie) {
+        // We need to set the inverse side of the question relationship manually before saving.
+        for (MovieQuestion movieQuestion : movie.getQuestions()) {
+            movieQuestion.setMovie(movie);
+        }
         return movieRepository.save(movie);
     }
 

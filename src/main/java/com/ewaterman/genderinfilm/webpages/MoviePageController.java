@@ -38,7 +38,7 @@ public class MoviePageController {
      * Used by the searchbar to find movies by name.
      */
     @GetMapping("/search")
-    String indexPage(@RequestParam String name, Model model) {
+    String searchPage(@RequestParam String name, Model model) {
 
         List<Movie> movies = movieService.findByNameIgnoreCaseContaining(name);
         model.addAttribute("searchedMovies", movies);
@@ -48,7 +48,7 @@ public class MoviePageController {
 
     @GetMapping("/create")
     String createPage(Model model) {
-        Movie movie = movieService.initMovieWithQuestions();
+        Movie movie = movieService.initMovie();
 
         model.addAttribute("movie", movie);
         model.addAttribute("answerTypes", BooleanAnswer.values());

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/root.html}"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <section layout:fragment="content">
+        <div class="container">
+            <h2>Add Or Update Character</h2>
+
+            <form th:action="@{/movies/{movieId}/characters/save(movieId=${movieId})}" th:object="${movieCharacter}" method="POST">
+
+                <input id="character-input-movie-id"
+                       type="hidden"
+                       th:field="*{movie.id}"
+                       class="form-control"
+                       value="${movieCharacter.movie}">
+
+                <!-- TODO: Checkbox for unnamed that blanks out the field and puts UNNAMED -->
+                <label for="character-input-name" class="form-label">Character Name</label>
+                <input id="character-input-name" type="text" th:field="*{character.name}" class="form-control">
+
+                <label for="character-input-type" class="form-label">Character Type</label>
+                <select id="character-input-type" th:field="*{character.type}">
+                    <option th:each="type : ${characterType}"
+                            th:value="${type.name()}"
+                            th:text="${type.displayText}"></option>
+                </select>
+
+                <!-- Character questions. -->
+                <div th:each="question, iterator : *{questions}">
+
+                    <p th:text="${question.question.displayText}"></p>
+                    <!--<p th:text="${question.question.extendedDisplayText}"></p>-->
+
+                    <input type="hidden" th:field="*{questions[__${iterator.index}__].question}" class="form-control">
+
+                    <label th:for="'character-question-answer' + ${iterator.index}" class="form-label">Answer</label>
+                    <select th:id="'character-question-answer' + ${iterator.index}"
+                            th:field="*{questions[__${iterator.index}__].answer}">
+                        <option th:each="answer : ${answerTypes}"
+                                th:value="${answer.name()}"
+                                th:text="${answer.displayText}"></option>
+                    </select>
+
+                    <label th:for="'character-question-details' + ${iterator.index}" class="form-label">Details</label>
+                    <input th:id="'character-question-details' + ${iterator.index}"
+                           th:field="*{questions[__${iterator.index}__].details}"
+                           class="form-control"
+                           type="text">
+                </div>
+
+                <button type="submit" class="btn btn-info col-2">Save Character</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+</html>

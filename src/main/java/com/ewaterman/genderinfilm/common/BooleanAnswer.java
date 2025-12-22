@@ -18,4 +18,8 @@ public enum BooleanAnswer {
      * The text to display the field as.
      */
     final String displayText;
+
+    public String toString() {
+        return displayText;
+    }
 }

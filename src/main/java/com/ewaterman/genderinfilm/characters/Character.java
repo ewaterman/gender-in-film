@@ -31,4 +31,8 @@ public class Character {
 
     @Column(name="name")
     private String name;
+
+    public String toString() {
+        return name;
+    }
 }
