@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Represents a character. Characters will have one entry in MovieCharacter for each movie that they're in.
  * This allows us to account for characters that appear in multiple movies (sequels, spin-offs, ...).
+ * As such, a "character" can also be thought of as shorthand for a "franchise character".
  */
 @Entity
 @Data

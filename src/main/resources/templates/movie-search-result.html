@@ -1,9 +1,17 @@
 <!-- List out the results of searching for movies -->
-<div id="movie-list-min-container-inner">
+<div id="movie-list-min-container-inner" xmlns:th="http://www.thymeleaf.org">
     <div th:each="movie : ${searchedMovies}">
-        <div class="movie-list-min-entry" onclick="location.href='#'">
-            <span th:text="${ movie.name }"></span>
-        </div>
+
+        <a th:href="@{/movies/{movieId}(movieId=${movie.id})}">
+            <div class="movie-list-min-entry">
+                <span th:text="${ movie.name }"></span>
+            </div>
+        </a>
+
         <hr>
+
     </div>
+    <!-- TODO: link to "see more results" -->
+    <!-- TODO: link to "Add a new movie" -->
+
 </div>

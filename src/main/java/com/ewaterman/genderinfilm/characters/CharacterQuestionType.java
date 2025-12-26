@@ -34,7 +34,7 @@ public enum CharacterQuestionType {
             "Is their gender made fun of?",
             "Is the character's gender expression played off as a joke or otherwise not taken seriously by another character or the movie itself? Is there a shocking gender reveal designed to get a laugh out of the viewer at the character's expense?");
 
-    // Think about how to refine this question before adding it.
+    // Think about how to refine this question before adding it. Could frame it around trans panic.
     //IS_GENDER_A_TRICK(
     //        "Do they use their gender trick someone?",
     //        "Is the character's gender-nonconformity directly and intentionally hidden from another character with intent trick, coerce, or deceive them?");

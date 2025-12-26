@@ -9,16 +9,20 @@ Navigate to (insert url here) and search for the movie that you'd like to know a
 
 
 ## TODO
-- Priority 1
-  - display movie page working (movie.html) -> delete movie button (cascade delete movie characters)
-  - list all movies page (paginated)
-- Priority 2
-  - navbar links
-  - homepage reports
-  - style everything ṕroperly
-- Priority 3
+- Priority 1 (Get the basic framework working.)
+  - write the about page
   - spring security to allow people to log in and add new movies/characters
   - add roles and make all delete calls admin only
+- Priority 2 (All the remaining essentials. After this point, we could launch.)
+  - homepage reports
+  - list all movies page (paginated) when hit enter in searchbar (also have "show more options" at bottom of search results)
+  - site icon
+  - metadata for each page
+  - ability to add a new movie via IMDB
+  - add movie metadata to each movie (poster mainly, but can also do budget, rating, genre, star rating, description)
+  - style everything ṕroperly
+- Priority 3 (Nice to haves. Not needed for launch.)
+  - l10n support (via message.properties files)
   - create dockerfile for generating jar so that Java isn't a deployment requirement anymore
   - create indexes on all tables
   - movie franchise
@@ -26,10 +30,10 @@ Navigate to (insert url here) and search for the movie that you'd like to know a
     - a "character" is essentially a "franchise character"
     - when creating a movie character. if a movie is in a franchise, it shows all characters of that franchise in a search bar, and you can select a franchise character to map to the movie character that you're creating (or create a new one if they DNE)
     - if a character appears in more than one franchise, they're treated as totally independent (Santa is in so many movies, but they're all re-imaginings of the character)
-  - pages for CRUD operations on a franchise character (independent of any film)      /franchises/{id}/characters
-  - change movies URI to be   /franchises/{id}/movies ???
-  - change movie character URI to be /franchises/{id}/movies/{id}/characters    (what to do if movie has no franchise?)
-  - pages for CRUD ops on a character /franchises/{id}/characters/1    GET returns all movies the franchise character is in
+    - pages for CRUD operations on a franchise character (independent of any film)      /franchises/{id}/characters
+    - change movies URI to be   /franchises/{id}/movies ???
+    - change movie character URI to be /franchises/{id}/movies/{id}/characters    (what to do if movie has no franchise?)
+    - pages for CRUD ops on a character /franchises/{id}/characters/1    GET returns all movies the franchise character is in
 
 ## Developer Info
 

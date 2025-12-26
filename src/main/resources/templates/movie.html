@@ -11,6 +11,12 @@
 
     <section layout:fragment="content">
 
+        <form th:action="@{/movies/{movieId}(movieId=${movie.id})}"
+              th:method="delete"
+              onsubmit="return confirm('Are you sure you want to delete this movie? It will also delete all characters for the movie.');">
+            <button type="submit">Delete</button>
+        </form>
+
         <h1 th:text="${movie.name}"></h1>
 
         <!-- TODO: imdb section with movie poster on left, movie info on right -->
