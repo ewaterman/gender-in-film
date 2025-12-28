@@ -4,7 +4,7 @@
       layout:decorate="~{layouts/root.html}"
       lang="en">
 <head>
-    <title th:text="Edit ${movie.name}">Movie Edit</title>
+    <title th:text="|Edit ${movie.name ?: 'Movie'}|">Edit Movie</title>
 </head>
 <body>
     <section layout:fragment="content">

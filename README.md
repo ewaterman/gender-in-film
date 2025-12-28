@@ -10,6 +10,8 @@ Navigate to (insert url here) and search for the movie that you'd like to know a
 
 ## TODO
 - Priority 1 (Get the basic framework working.)
+  - Edit movie button
+  - Edit character button
   - spring security to allow people to log in and add new movies/characters
   - add roles and make all delete calls admin only
 
@@ -25,6 +27,7 @@ Navigate to (insert url here) and search for the movie that you'd like to know a
   - l10n support (via message.properties files)
   - create dockerfile for generating jar so that Java isn't a deployment requirement anymore
   - create indexes on all tables
+  - make the movie/character questions dynamic (ie move them to the db)
   - movie franchise
     - a movie can only be in a single franchise. When adding a movie, can set a franchise for it.
     - a "character" is essentially a "franchise character"
