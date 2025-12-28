@@ -10,18 +10,18 @@ Navigate to (insert url here) and search for the movie that you'd like to know a
 
 ## TODO
 - Priority 1 (Get the basic framework working.)
-  - write the about page
   - spring security to allow people to log in and add new movies/characters
   - add roles and make all delete calls admin only
+
 - Priority 2 (All the remaining essentials. After this point, we could launch.)
-  - homepage reports
   - list all movies page (paginated) when hit enter in searchbar (also have "show more options" at bottom of search results)
-  - site icon
-  - metadata for each page
-  - ability to add a new movie via IMDB
-  - add movie metadata to each movie (poster mainly, but can also do budget, rating, genre, star rating, description)
+  - add tmdb data on movie create (poster mainly, but can also do budget, rating, genre, star rating, description)
+  - show tmdb data on movie details page
+  - show tmdb data on movie search (can we get mini images so it's faster?)
   - style everything ṕroperly
+
 - Priority 3 (Nice to haves. Not needed for launch.)
+  - homepage reports
   - l10n support (via message.properties files)
   - create dockerfile for generating jar so that Java isn't a deployment requirement anymore
   - create indexes on all tables

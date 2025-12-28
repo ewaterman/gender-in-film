@@ -4,11 +4,9 @@
       layout:decorate="~{layouts/root.html}"
       lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${movie.name}">Movie Details</title>
 </head>
 <body>
-
     <section layout:fragment="content">
 
         <form th:action="@{/movies/{movieId}(movieId=${movie.id})}"
