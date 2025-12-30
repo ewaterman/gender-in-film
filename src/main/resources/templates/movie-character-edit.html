@@ -26,7 +26,12 @@
                        class="form-control"
                        value="${movieCharacter.movie}">
 
-                <!-- TODO: Checkbox for unnamed that blanks out the field and puts UNNAMED -->
+                <label for="character-input-unnamed" class="form-label">Unnamed?</label>
+                <input id="character-input-unnamed"
+                       type="checkbox"
+                       th:checked="${movieCharacter.character.name == null}"
+                       onclick="toggleUnnamed()"/>
+
                 <label for="character-input-name" class="form-label">Character Name</label>
                 <input id="character-input-name" type="text" th:field="*{character.name}" class="form-control">
 
@@ -63,7 +68,26 @@
                 <button type="submit" class="btn btn-info col-2">Save Character</button>
             </form>
         </div>
-    </section>
 
+        <script>
+            // If the character is unnamed, don't allow the user to edit the name.
+            function toggleUnnamed() {
+                const checkbox = document.getElementById('character-input-unnamed');
+                const targetField = document.getElementById('character-input-name');
+                if (targetField.disabled) {
+                    targetField.value = '';
+                }
+                else {
+                    targetField.value = 'UNNAMED';
+                }
+                targetField.disabled = checkbox.checked;
+            }
+
+            // Set the initial state when first loading the page.
+            document.addEventListener('DOMContentLoaded', function() {
+                toggleUnnamed();
+            });
+        </script>
+    </section>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.ewaterman.genderinfilm.characters;
 
+import io.micrometer.common.util.StringUtils;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
@@ -83,6 +84,10 @@ public class MovieCharacterService {
     public MovieCharacter save(MovieCharacter character) {
         // We create the character and the movie character within the same operation. In the future the character
         // will already exist at this point, but for now simply create the character first, then the movie character.
+        Character franchiseCharacter = character.getCharacter();
+        if (StringUtils.isBlank(franchiseCharacter.getName())) {
+            franchiseCharacter.setName(null);  // We don't want blank names, only null if they're unnamed.
+        }
         characterRepository.save(character.getCharacter());
 
         // We need to set the inverse side of the question relationship manually before saving.

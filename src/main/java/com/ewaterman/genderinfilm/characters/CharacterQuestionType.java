@@ -27,8 +27,8 @@ public enum CharacterQuestionType {
             "Is the character a villain or antagonist to the protagonists? Are they a murderer, a criminal, or otherwise portrayed as morally wrong by the film?"),
 
     IS_NAMED(
-            "Are they named in the movie?",
-            "Is the character named in the movie? The credits don't count, it must be said in the movie."),
+            "Is their name mentioned in the movie?",
+            "The credits don't count, their name must be clearly stated in the movie itself."),
 
     IS_GENDER_JOKE(
             "Is their gender made fun of?",
