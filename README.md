@@ -10,8 +10,6 @@ Navigate to (insert url here) and search for the movie that you'd like to know a
 
 ## TODO
 - Priority 1 (Get the basic framework working.)
-  - Edit movie button
-  - Edit character button
   - spring security to allow people to log in and add new movies/characters
   - add roles and make all delete calls admin only
 
@@ -20,6 +18,7 @@ Navigate to (insert url here) and search for the movie that you'd like to know a
   - add tmdb data on movie create (poster mainly, but can also do budget, rating, genre, star rating, description)
   - show tmdb data on movie details page
   - show tmdb data on movie search (can we get mini images so it's faster?)
+  - add ability to make a character be unnamed (checkbox that when ticked name field is nulled but in the text box shows "UNNAMED" and field becomes uneditable)
   - style everything ṕroperly
 
 - Priority 3 (Nice to haves. Not needed for launch.)

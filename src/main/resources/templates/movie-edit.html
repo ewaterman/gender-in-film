@@ -13,6 +13,13 @@
 
             <form th:action="@{/movies/save}" th:object="${movie}" method="POST">
 
+                <!-- If we're updating, we need to set the movie id. -->
+                <input id="movie-input-id"
+                       type="hidden"
+                       th:field="*{id}"
+                       class="form-control"
+                       value="${movie.movie}">
+
                 <!-- TODO: Add search bar that looks up TMDB by name. Autofills in name and tmdbId with result and give the input element the readonly="readonly" attribute. -->
                 <label for="movie-input-name" class="form-label">Name</label>
                 <input id="movie-input-name" type="text" th:field="*{name}" class="form-control">

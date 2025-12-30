@@ -9,10 +9,12 @@
 <body>
     <section layout:fragment="content">
 
+        <a th:href="@{/movies/{movieId}/update(movieId=${movie.id})}">Edit movie</a>
+
         <form th:action="@{/movies/{movieId}(movieId=${movie.id})}"
               th:method="delete"
               onsubmit="return confirm('Are you sure you want to delete this movie? It will also delete all characters for the movie.');">
-            <button type="submit">Delete</button>
+            <button type="submit">Delete movie</button>
         </form>
 
         <h1 th:text="${movie.name}"></h1>

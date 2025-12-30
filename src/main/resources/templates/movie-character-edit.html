@@ -13,6 +13,13 @@
 
             <form th:action="@{/movies/{movieId}/characters/save(movieId=${movieId})}" th:object="${movieCharacter}" method="POST">
 
+                <!-- If we're updating, we need to set the character id. -->
+                <input id="character-input-id"
+                       type="hidden"
+                       th:field="*{id}"
+                       class="form-control"
+                       value="${movieCharacter.id}">
+
                 <input id="character-input-movie-id"
                        type="hidden"
                        th:field="*{movie.id}"
