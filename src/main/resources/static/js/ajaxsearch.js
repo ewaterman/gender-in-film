@@ -1,7 +1,7 @@
 const user_input = $("#user-input")
 const search_icon = $('#search-icon')
 const replaceable_div = $('#replaceable-content')
-const endpoint = '/components/movies/details/search'
+const endpoint = '/components/movies/search'
 const delay_by_in_ms = 500
 let scheduled_function = false
 

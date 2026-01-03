@@ -14,10 +14,8 @@ Navigate to (insert url here) and search for the movie that you'd like to know a
   - add roles and make all delete calls admin only
 
 - Priority 2 (All the remaining essentials. After this point, we could launch.)
-  - add tmdb data on movie create (poster mainly, but can also do budget, rating, genre, star rating, description)
-  - show tmdb data on movie details page
-  - show tmdb data on movie search (can we get mini images so it's faster?)
   - style everything ṕroperly
+  - all other TODOs in the code (priority 3 or lower todos go in the README only)
 
 - Priority 3 (Nice to haves. Not needed for launch.)
   - homepage reports
@@ -26,6 +24,10 @@ Navigate to (insert url here) and search for the movie that you'd like to know a
   - create dockerfile for generating jar so that Java isn't a deployment requirement anymore
   - create indexes on all tables
   - make the movie/character questions dynamic (ie move them to the db)
+  - handle TMDB being unavailable
+    - make tmdb field optional in movie
+    - if get error or no response when searching films, search our db instead and show those.
+    - add ability to assign a tmdb id to movies after the fact when editing them
   - character portraits. This is a nice to have but storing them ourselves is not gonna happen.
   - movie franchise
     - a movie can only be in a single franchise. When adding a movie, can set a franchise for it.
