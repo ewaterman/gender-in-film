@@ -8,10 +8,11 @@ import com.ewaterman.genderinfilm.characters.CharacterType;
 import com.ewaterman.genderinfilm.characters.MovieCharacter;
 import com.ewaterman.genderinfilm.characters.MovieCharacterService;
 import com.ewaterman.genderinfilm.common.BooleanAnswer;
+import com.ewaterman.genderinfilm.common.base.PageController;
 
 @Controller
 @RequestMapping("/movies/{movieId}/characters")
-public class MovieCharacterPageController {
+public class MovieCharacterPageController extends PageController {
 
     private final MovieCharacterService movieCharacterService;
 

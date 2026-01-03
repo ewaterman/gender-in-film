@@ -4,13 +4,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.ewaterman.genderinfilm.common.base.ApiController;
+
 @RestController
 @RequestMapping("/api/movie-characters")
-public class MovieCharacterController {
+public class MovieCharacterApiController extends ApiController {
 
     private final MovieCharacterService movieCharacterService;
 
-    public MovieCharacterController(MovieCharacterService movieCharacterService) {
+    public MovieCharacterApiController(MovieCharacterService movieCharacterService) {
         this.movieCharacterService = movieCharacterService;
     }
 

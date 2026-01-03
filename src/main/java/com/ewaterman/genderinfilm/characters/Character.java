@@ -1,5 +1,6 @@
 package com.ewaterman.genderinfilm.characters;
 
+import io.micrometer.common.util.StringUtils;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,6 +35,6 @@ public class Character {
     private String name;
 
     public String toString() {
-        return name;
+        return StringUtils.isBlank(name) ? "UNNAMED": name;
     }
 }

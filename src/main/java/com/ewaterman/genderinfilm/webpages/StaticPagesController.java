@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.ewaterman.genderinfilm.reports.ReportService;
+import com.ewaterman.genderinfilm.common.base.PageController;
 
 @Controller
-public class StaticPagesController {
+public class StaticPagesController extends PageController {
 
     @GetMapping("/about")
     String homepage(Model model) {

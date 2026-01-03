@@ -26,10 +26,14 @@
                        class="form-control"
                        value="${movieCharacter.movie}">
 
+                <!--
+                When initially populating the page, the checkbox should only be checked if the character previously
+                existed (ie we're editing, not creating) and they were unnamed.
+                -->
                 <label for="character-input-unnamed" class="form-label">Unnamed?</label>
                 <input id="character-input-unnamed"
                        type="checkbox"
-                       th:checked="${movieCharacter.character.name == null}"
+                       th:checked="${movieCharacter.id != null && movieCharacter.character.name == null}"
                        onclick="toggleUnnamed()"/>
 
                 <label for="character-input-name" class="form-label">Character Name</label>
@@ -48,6 +52,7 @@
                     <p th:text="${question.question.displayText}"></p>
                     <!--<p th:text="${question.question.extendedDisplayText}"></p>-->
 
+                    <input type="hidden" th:field="*{questions[__${iterator.index}__].id}" class="form-control">
                     <input type="hidden" th:field="*{questions[__${iterator.index}__].question}" class="form-control">
 
                     <label th:for="'character-question-answer' + ${iterator.index}" class="form-label">Answer</label>
@@ -74,11 +79,11 @@
             function toggleUnnamed() {
                 const checkbox = document.getElementById('character-input-unnamed');
                 const targetField = document.getElementById('character-input-name');
-                if (targetField.disabled) {
-                    targetField.value = '';
-                }
-                else {
+                if (checkbox.checked) {
                     targetField.value = 'UNNAMED';
+                }
+                else if (targetField.value == 'UNNAMED') {
+                    targetField.value = '';
                 }
                 targetField.disabled = checkbox.checked;
             }

@@ -4,7 +4,7 @@
       layout:decorate="~{layouts/root.html}"
       lang="en">
 <head>
-    <title th:text="|Edit ${movie.name ?: 'Movie'}|">Edit Movie</title>
+    <title th:text="|Edit ${tmdbMovie.title ?: 'Movie'}|">Edit Movie</title>
 </head>
 <body>
     <section layout:fragment="content">
@@ -13,18 +13,13 @@
 
             <form th:action="@{/movies/save}" th:object="${movie}" method="POST">
 
-                <!-- If we're updating, we need to set the movie id. -->
-                <input id="movie-input-id"
-                       type="hidden"
-                       th:field="*{id}"
-                       class="form-control"
-                       value="${movie.movie}">
-
-                <!-- TODO: Add search bar that looks up TMDB by name. Autofills in name and tmdbId with result and give the input element the readonly="readonly" attribute. -->
-                <label for="movie-input-name" class="form-label">Name</label>
-                <input id="movie-input-name" type="text" th:field="*{name}" class="form-control">
-
+                <!-- Hidden fields. Remember this is both a create and update page. -->
+                <input id="movie-input-id" type="hidden" th:field="*{id}" class="form-control">
+                <input id="movie-input-name" type="hidden" th:field="*{name}" class="form-control">
                 <input id="movie-input-tmdbId" type="hidden" th:field="*{tmdbId}" class="form-control">
+
+                <!-- TMDB data -->
+                <h2 th:text="${tmdbMovie.title}"></h2>
 
                 <!-- Movie questions. -->
                 <div th:each="question, iterator : *{questions}">
@@ -32,6 +27,7 @@
                     <p th:text="${question.question.displayText}"></p>
                     <!--<p th:text="${question.question.extendedDisplayText}"></p>-->
 
+                    <input type="hidden" th:field="*{questions[__${iterator.index}__].id}" class="form-control">
                     <input type="hidden" th:field="*{questions[__${iterator.index}__].question}" class="form-control">
 
                     <label th:for="'movie-question-answer' + ${iterator.index}" class="form-label">Answer</label>

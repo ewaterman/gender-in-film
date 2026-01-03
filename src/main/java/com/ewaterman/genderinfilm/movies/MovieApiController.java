@@ -4,24 +4,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.ewaterman.genderinfilm.common.base.ApiController;
+
 @RestController
 @RequestMapping("/api/movies")
-public class MovieController {
+public class MovieApiController extends ApiController {
 
     private final MovieService movieService;
 
-    public MovieController(MovieService movieService) {
+    public MovieApiController(final MovieService movieService) {
         this.movieService = movieService;
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Movie> findById(@PathVariable Long id) {
-        return ResponseEntity.of(movieService.findById(id));
-    }
-
-    @GetMapping("/tmdbid/{id}")
-    public ResponseEntity<Movie> findByTmdbId(@PathVariable String id) {
-        return ResponseEntity.of(movieService.findByTmdbId(id));
     }
 
     @PostMapping

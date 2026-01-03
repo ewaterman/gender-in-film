@@ -39,7 +39,7 @@ public class Movie {
      * Maps movies to their metadata in The Movie Database.
      */
     @Column(name="tmdb_id", nullable=false)
-    private String tmdbId;
+    private String tmdbId;  //TODO: change to be an Integer type
 
     public String toString() {
         return name;

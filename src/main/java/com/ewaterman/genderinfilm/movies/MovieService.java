@@ -1,5 +1,10 @@
 package com.ewaterman.genderinfilm.movies;
 
+import info.movito.themoviedbapi.model.movies.MovieDb;
+import java.util.Collection;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,11 +36,16 @@ public class MovieService {
     }
 
     /**
-     * Initialize a new movie by populating a full list of (empty) questions. This makes creating the movie
-     * much simpler for the frontend.
+     * Initialize a new movie by populating it with data from TMDB and with a full list of (empty) questions.
+     * This makes creating the movie much simpler for the frontend.
      */
-    public Movie initMovie() {
+    public Movie initMovie(MovieDb tmdbMovie) {
         Movie movie = new Movie();
+        if (tmdbMovie != null) {
+            movie.setTmdbId(String.valueOf(tmdbMovie.getId()));
+            movie.setName(tmdbMovie.getTitle());
+        }
+
         List<MovieQuestion> questions = movie.getQuestions();
         for (MovieQuestionType questionType : MovieQuestionType.values()) {
             questions.add(MovieQuestion.builder()
@@ -66,8 +76,18 @@ public class MovieService {
         return movie;
     }
 
-    public Optional<Movie> findByTmdbId(String id) {
-        return movieRepository.findByTmdbId(id);
+    public Map<Integer, Movie> findAllByTmdbIdsMappedByTmdbId(Collection<Integer> ids) {
+        List<Movie> movies = movieRepository.findAllByTmdbIdIn(ids.stream()
+                .map(String::valueOf)
+                .collect(Collectors.toList()));
+
+        return movies.stream().collect(Collectors.toMap( movie ->
+                        Integer.parseInt(movie.getTmdbId()),
+                Function.identity()));
+    }
+
+    public Optional<Movie> findByTmdbId(Integer id) {
+        return movieRepository.findByTmdbId(String.valueOf(id));
     }
 
     public Movie save(Movie movie) {
