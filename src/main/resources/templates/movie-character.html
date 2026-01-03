@@ -12,8 +12,6 @@
         <a th:href="@{/movies/{movieId}(movieId=${movieCharacter.movie.id})}">Back to movie</a>
         <a th:href="@{/movies/{movieId}/characters/{movieCharacterId}/update(movieId=${movieCharacter.movie.id},movieCharacterId=${movieCharacter.id})}">Edit character</a>
 
-        <!-- TODO: character portrait -->
-
         <form th:action="@{/movies/{movieId}/characters/{movieCharacterId}(movieId=${movieCharacter.movie.id},movieCharacterId=${movieCharacter.id})}"
               th:method="delete"
               onsubmit="return confirm('Are you sure you want to delete this character?');">

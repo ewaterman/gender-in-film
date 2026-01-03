@@ -41,7 +41,7 @@
             </div>
             <div th:if="${#lists.isEmpty(ourMovie.movieCharacters)}">
                 <p>
-                    We don't have any gender-queer characters for this movie listed in our system.
+                    We don't have any transgender characters for this movie listed in our system.
                 </p>
             </div>
             <a th:href="@{/movies/{movieId}/characters/create(movieId=${ourMovie.id})}">Add new character</a>

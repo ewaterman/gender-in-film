@@ -1,3 +1,6 @@
+// Used to issue AJAX requests to search for movie data. All that's needed is to define HTML elements with ids matching
+// the below constants. We'll eventually want to make this generic by creating a JS function that takes the below
+// constants as method args and dynamically adds the jquery function listeners to those elements.
 const user_input = $("#user-input")
 const search_icon = $('#search-icon')
 const replaceable_div = $('#replaceable-content')
@@ -5,10 +8,6 @@ const endpoint = '/components/movies/search'
 const delay_by_in_ms = 500
 let scheduled_function = false
 
-// TODO: Make this generic! JS function that takes above args and adds the jquery function listeners to those elements.
-
-// Can be used anywhere we need to issue an AJAX request to search for data.
-// All that's needed is to define elements with ids matching the above constants.
 let render_result = function(html) {
     replaceable_div.fadeTo('slow', 0).promise().then(() => {
         replaceable_div.html(html)
