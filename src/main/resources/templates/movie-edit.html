@@ -20,6 +20,9 @@
 
                 <!-- TMDB data -->
                 <h2 th:text="${tmdbMovie.title}"></h2>
+                <img th:src="${#strings.isEmpty(tmdbMovie.posterPath)} ? @{/images/no-poster-300.jpg} : @{'https://image.tmdb.org/t/p/w300/' + ${tmdbMovie.posterPath}}"
+                     th:alt="|Poster for ${tmdbMovie.title}|"
+                     width="300">
 
                 <!-- Movie questions. -->
                 <div th:each="question, iterator : *{questions}">

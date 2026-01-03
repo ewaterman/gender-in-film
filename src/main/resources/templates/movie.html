@@ -11,7 +11,9 @@
 
         <!-- TMDB data -->
         <h1 th:text="${tmdbMovie.title}"></h1>
-        <p th:text="${tmdbMovie.id}"></p>
+        <img th:src="${#strings.isEmpty(tmdbMovie.posterPath)} ? @{/images/no-poster-300.jpg} : @{'https://image.tmdb.org/t/p/w300/' + ${tmdbMovie.posterPath}}"
+             th:alt="|Poster for ${tmdbMovie.title}|"
+             width="300">
 
         <div th:if="${ourMovie != null}">
             <!-- Delete and edit buttons -->

@@ -10,7 +10,7 @@
             <!-- The searchbar is populated from TMDB, and so ourMovie will be null for some of the results. -->
             <a th:href="${ourMovie} == null ? @{/movies/tmdb/{tmdbId}(tmdbId=${tmdbId})} : @{/movies/{movieId}(movieId=${ourMovie.id})}">
                 <div th:with="releaseYear=${#strings.isEmpty(tmdbMovie.releaseDate)} ? '' : | (${#temporals.format(#temporals.createDate(tmdbMovie.releaseDate, 'yyyy-MM-dd'), 'yyyy')})|">
-                    <img th:src="${#strings.isEmpty(tmdbMovie.posterPath)} ? @{/images/no-poster-search-result.jpg} : @{'https://image.tmdb.org/t/p/w92/' + ${tmdbMovie.posterPath}}"
+                    <img th:src="${#strings.isEmpty(tmdbMovie.posterPath)} ? @{/images/no-poster-92.jpg} : @{'https://image.tmdb.org/t/p/w92/' + ${tmdbMovie.posterPath}}"
                          th:alt="|Poster for ${tmdbMovie.title}|"
                          width="50">
                     <span th:text="|${tmdbMovie.title}${releaseYear}|"></span>

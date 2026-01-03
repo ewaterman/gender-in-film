@@ -15,7 +15,6 @@ Navigate to (insert url here) and search for the movie that you'd like to know a
 
 - Priority 2 (All the remaining essentials. After this point, we could launch.)
   - style everything ṕroperly
-  - all other TODOs in the code (priority 3 or lower todos go in the README only)
 
 - Priority 3 (Nice to haves. Not needed for launch.)
   - homepage reports
