@@ -1,5 +1,6 @@
 package com.ewaterman.genderinfilm.webpages;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,7 @@ public class MovieCharacterPageController extends PageController {
         return "movie-character";
     }
 
+    @PreAuthorize("hasRole('ROLE_EDITOR')")
     @GetMapping("/create")
     String createPage(@PathVariable long movieId, Model model) {
         MovieCharacter movieCharacter = movieCharacterService.initMovieCharacter(movieId);
@@ -41,6 +43,7 @@ public class MovieCharacterPageController extends PageController {
         return "movie-character-edit";
     }
 
+    @PreAuthorize("hasRole('ROLE_EDITOR')")
     @GetMapping("/{movieCharacterId}/update")
     String updatePage(@PathVariable long movieId, @PathVariable long movieCharacterId, Model model) {
         MovieCharacter movieCharacter = movieCharacterService.findByIdAndPopulate(movieCharacterId).orElseThrow(() ->
@@ -53,6 +56,7 @@ public class MovieCharacterPageController extends PageController {
         return "movie-character-edit";
     }
 
+    @PreAuthorize("hasRole('ROLE_EDITOR')")
     @PostMapping("/save")
     public String saveOperation(@PathVariable long movieId,
                                 @ModelAttribute("movieCharacter") MovieCharacter movieCharacter) {
@@ -60,6 +64,7 @@ public class MovieCharacterPageController extends PageController {
         return "redirect:/movies/" + movieId + "/characters/" + id;
     }
 
+    @PreAuthorize("hasRole('ROLE_EDITOR')")
     @DeleteMapping("/{movieCharacterId}")
     public String deleteOperation(@PathVariable long movieId, @PathVariable long movieCharacterId) {
         movieCharacterService.delete(movieCharacterId);

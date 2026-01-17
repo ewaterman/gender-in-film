@@ -10,8 +10,7 @@ Navigate to (insert url here) and search for the movie that you'd like to know a
 
 ## TODO
 - Priority 1 (Get the basic framework working.)
-  - spring security to allow people to log in and add new movies/characters
-  - add roles and make all delete calls admin only
+  - disable edit and delete buttons on pages if not logged in as editor
 
 - Priority 2 (All the remaining essentials. After this point, we could launch.)
   - style everything ṕroperly

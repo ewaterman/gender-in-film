@@ -10,7 +10,7 @@ import com.ewaterman.genderinfilm.common.base.PageController;
 public class StaticPagesController extends PageController {
 
     @GetMapping("/about")
-    String homepage(Model model) {
+    String about(Model model) {
         return "about";
     }
 }

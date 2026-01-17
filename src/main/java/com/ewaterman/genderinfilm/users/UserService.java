@@ -34,7 +34,7 @@ public class UserService implements UserDetailsService {
             return AppUser.builder()
                     .username(username)
                     .password(new BCryptPasswordEncoder().encode(adminPassword))
-                    .roles(AppUser.rolesToString(List.of(UserRole.ADMIN, UserRole.EDITOR)))
+                    .roles(AppUser.rolesToString(List.of(UserRole.ROLE_ADMIN, UserRole.ROLE_EDITOR)))
                     .build();
         }
 

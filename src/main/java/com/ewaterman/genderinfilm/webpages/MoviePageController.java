@@ -7,6 +7,7 @@ import com.ewaterman.genderinfilm.movies.MovieService;
 
 import info.movito.themoviedbapi.model.movies.MovieDb;
 import java.util.Optional;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -62,6 +63,7 @@ public class MoviePageController {
         return "movie";
     }
 
+    @PreAuthorize("hasRole('ROLE_EDITOR')")
     @GetMapping("/create")
     String createPage(@RequestParam Integer tmdbId, Model model) {
         MovieDb tmdbMovie = tmdbApiWrapper.getMovieDetails(tmdbId);
@@ -73,6 +75,7 @@ public class MoviePageController {
         return "movie-edit";
     }
 
+    @PreAuthorize("hasRole('ROLE_EDITOR')")
     @GetMapping("/{id}/update")
     String updatePage(@PathVariable long id, Model model) {
         Movie movie = movieService.findByIdAndPopulate(id)
@@ -85,12 +88,14 @@ public class MoviePageController {
         return "movie-edit";
     }
 
+    @PreAuthorize("hasRole('ROLE_EDITOR')")
     @PostMapping("/save")
     public String saveOperation(@ModelAttribute("movie") Movie movie) {
         long id = movieService.save(movie).getId();
         return "redirect:/movies/" + id;
     }
 
+    @PreAuthorize("hasRole('ROLE_EDITOR')")
     @DeleteMapping("/{id}")
     public String deleteOperation(@PathVariable long id) {
         movieService.delete(id);
