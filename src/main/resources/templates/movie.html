@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/root.html}"
       lang="en">
@@ -17,13 +18,15 @@
 
         <div th:if="${ourMovie != null}">
             <!-- Delete and edit buttons -->
-            <a th:href="@{/movies/{movieId}/update(movieId=${ourMovie.id})}">Edit movie</a>
+            <div sec:authorize="hasRole('ROLE_EDITOR')">
+                <a th:href="@{/movies/{movieId}/update(movieId=${ourMovie.id})}">Edit movie</a>
 
-            <form th:action="@{/movies/{movieId}(movieId=${ourMovie.id})}"
-                  th:method="delete"
-                  onsubmit="return confirm('Are you sure you want to delete this movie? It will also delete all characters for the movie.');">
-                <button type="submit">Delete movie</button>
-            </form>
+                <form th:action="@{/movies/{movieId}(movieId=${ourMovie.id})}"
+                      th:method="delete"
+                      onsubmit="return confirm('Are you sure you want to delete this movie? It will also delete all characters for the movie.');">
+                    <button type="submit">Delete movie</button>
+                </form>
+            </div>
 
             <!-- Movie test results -->
             <div th:each="question : ${ourMovie.questions}">
@@ -46,13 +49,17 @@
                     We don't have any transgender characters for this movie listed in our system.
                 </p>
             </div>
-            <a th:href="@{/movies/{movieId}/characters/create(movieId=${ourMovie.id})}">Add new character</a>
+            <a sec:authorize="hasRole('ROLE_EDITOR')" th:href="@{/movies/{movieId}/characters/create(movieId=${ourMovie.id})}">
+                Add new character
+            </a>
         </div>
 
-        <div th:if="${ourMovie == null}">
+        <div th:if="${ourMovie == null}" >
             <p>
                 We don't have this movie listed in our system.
-                <a th:href="@{/movies/create(tmdbId=${tmdbMovie.id})}">Add it now!</a>
+                <a sec:authorize="hasRole('ROLE_EDITOR')" th:href="@{/movies/create(tmdbId=${tmdbMovie.id})}">
+                    Add it now!
+                </a>
             </p>
         </div>
     </section>

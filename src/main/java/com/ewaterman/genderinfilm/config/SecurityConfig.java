@@ -21,6 +21,7 @@ public class SecurityConfig {
         httpSecurity
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(authManager -> authManager.anyRequest().permitAll())
+                .logout(logout -> logout.logoutSuccessUrl("/"))
                 .formLogin(Customizer.withDefaults());
         return httpSecurity.build();
     }

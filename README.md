@@ -10,7 +10,7 @@ Navigate to (insert url here) and search for the movie that you'd like to know a
 
 ## TODO
 - Priority 1 (Get the basic framework working.)
-  - disable edit and delete buttons on pages if not logged in as editor
+  - DONE!
 
 - Priority 2 (All the remaining essentials. After this point, we could launch.)
   - style everything ṕroperly
