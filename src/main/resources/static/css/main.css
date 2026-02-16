@@ -13,3 +13,16 @@ body {
 #root-main {
   background-color: #FFFFFF;
 }
+
+#main-content-container {
+  padding: 10px;
+}
+
+.simple-grid {
+  display: grid;
+  gap: 10px;
+  justify-content: center;  /* column alignment */
+  align-content: center;    /* row alignment */
+  align-items: center;      /* vertical alignment within cell */
+  justify-items: stretch;   /* horizontal alignment within cell */
+}

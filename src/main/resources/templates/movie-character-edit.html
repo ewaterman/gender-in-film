@@ -8,71 +8,76 @@
 </head>
 <body>
     <section layout:fragment="content">
-        <div class="container">
-            <h2>Add Or Update Character</h2>
 
-            <form th:action="@{/movies/{movieId}/characters/save(movieId=${movieId})}" th:object="${movieCharacter}" method="POST">
+        <a class="btn btn-primary" th:href="@{/movies/{movieId}(movieId=${movieCharacter.movie.id})}">Back to movie</a>
+        <h2>Add Or Update Character</h2>
 
-                <!-- If we're updating, we need to set the character id. -->
-                <input id="character-input-id"
-                       type="hidden"
-                       th:field="*{id}"
-                       class="form-control"
-                       value="${movieCharacter.id}">
+        <form th:action="@{/movies/{movieId}/characters/save(movieId=${movieId})}" th:object="${movieCharacter}" method="POST">
 
-                <input id="character-input-movie-id"
-                       type="hidden"
-                       th:field="*{movie.id}"
-                       class="form-control"
-                       value="${movieCharacter.movie}">
+            <!-- If we're updating, we need to set the character id. -->
+            <input id="character-input-id"
+                   type="hidden"
+                   th:field="*{id}"
+                   class="form-control"
+                   value="${movieCharacter.id}">
 
-                <!--
-                When initially populating the page, the checkbox should only be checked if the character previously
-                existed (ie we're editing, not creating) and they were unnamed.
-                -->
-                <label for="character-input-unnamed" class="form-label">Unnamed?</label>
-                <input id="character-input-unnamed"
-                       type="checkbox"
-                       th:checked="${movieCharacter.id != null && movieCharacter.character.name == null}"
-                       onclick="toggleUnnamed()"/>
+            <input id="character-input-movie-id"
+                   type="hidden"
+                   th:field="*{movie.id}"
+                   class="form-control"
+                   value="${movieCharacter.movie}">
 
-                <label for="character-input-name" class="form-label">Character Name</label>
-                <input id="character-input-name" type="text" th:field="*{character.name}" class="form-control">
+            <!--
+            When initially populating the page, the checkbox should only be checked if the character previously
+            existed (ie we're editing, not creating) and they were unnamed.
+            -->
+            <label for="character-input-unnamed" class="form-label">Unnamed?</label>
+            <input id="character-input-unnamed"
+                   type="checkbox"
+                   th:checked="${movieCharacter.id != null && movieCharacter.character.name == null}"
+                   onclick="toggleUnnamed()"/>
 
-                <label for="character-input-type" class="form-label">Character Type</label>
-                <select id="character-input-type" th:field="*{character.type}">
-                    <option th:each="type : ${characterType}"
-                            th:value="${type.name()}"
-                            th:text="${type.displayText}"></option>
-                </select>
+            <label for="character-input-name" class="form-label">Character Name</label>
+            <input id="character-input-name" type="text" th:field="*{character.name}" class="form-control">
 
-                <!-- Character questions. -->
-                <div th:each="question, iterator : *{questions}">
+            <label for="character-input-type" class="form-label">Character Type</label>
+            <select id="character-input-type" th:field="*{character.type}">
+                <option th:each="type : ${characterType}"
+                        th:value="${type.name()}"
+                        th:text="${type.displayText}"></option>
+            </select>
 
-                    <p th:text="${question.question.displayText}"></p>
-                    <!--<p th:text="${question.question.extendedDisplayText}"></p>-->
+            <!-- Character questions. -->
+            <div th:each="question, iterator : *{questions}">
+                <input type="hidden" th:field="*{questions[__${iterator.index}__].id}" class="form-control">
+                <input type="hidden" th:field="*{questions[__${iterator.index}__].question}" class="form-control">
 
-                    <input type="hidden" th:field="*{questions[__${iterator.index}__].id}" class="form-control">
-                    <input type="hidden" th:field="*{questions[__${iterator.index}__].question}" class="form-control">
-
-                    <label th:for="'character-question-answer' + ${iterator.index}" class="form-label">Answer</label>
+                <div>
+                    <!-- TODO:  -->
+                    <!-- <p th:text="${question.question.extendedDisplayText}"></p>   https://www.w3schools.com/bootstrap4/bootstrap_tooltip.asp  -->
+                    <label th:for="'character-question-answer' + ${iterator.index}"
+                           th:utext="|<b>${question.question.displayText} <i class='fa-solid fa-circle-info' style='color: blue;'></i> :</b>|"
+                           class="form-label"></label>
                     <select th:id="'character-question-answer' + ${iterator.index}"
-                            th:field="*{questions[__${iterator.index}__].answer}">
+                            th:field="*{questions[__${iterator.index}__].answer}"
+                            class="form-select">
                         <option th:each="answer : ${answerTypes}"
                                 th:value="${answer.name()}"
-                                th:text="${answer.displayText}"></option>
+                                th:text="${movieCharacter.questions[__${iterator.index}__].question.getTextForAnswer(answer)}"></option>
                     </select>
+                </div>
 
-                    <label th:for="'character-question-details' + ${iterator.index}" class="form-label">Details</label>
+                <div>
+                    <label th:for="'character-question-details' + ${iterator.index}" class="form-label"><b>Detailed Explanation</b> (optional)<b>:</b></label>
                     <input th:id="'character-question-details' + ${iterator.index}"
                            th:field="*{questions[__${iterator.index}__].details}"
                            class="form-control"
                            type="text">
                 </div>
+            </div>
 
-                <button type="submit" class="btn btn-info col-2">Save Character</button>
-            </form>
-        </div>
+            <button type="submit" class="btn btn-info col-2">Save Character</button>
+        </form>
 
         <script>
             // If the character is unnamed, don't allow the user to edit the name.

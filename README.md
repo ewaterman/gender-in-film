@@ -26,7 +26,10 @@ Navigate to (insert url here) and search for the movie that you'd like to know a
     - make tmdb field optional in movie
     - if get error or no response when searching films, search our db instead and show those.
     - add ability to assign a tmdb id to movies after the fact when editing them
-  - character portraits. This is a nice to have but storing them ourselves is not gonna happen.
+  - character portraits
+    - When editing a movie character, allow you to specify the actor, which searches https://developer.themoviedb.org/reference/search-person
+      - Might be able to use MovieDb.credits to get the cast and go from there
+    - Show on character details and on movie details pages (with link to TMDB page)
   - movie franchise
     - a movie can only be in a single franchise. When adding a movie, can set a franchise for it.
     - a "character" is essentially a "franchise character"

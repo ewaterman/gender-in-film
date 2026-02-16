@@ -37,6 +37,13 @@ public class CharacterQuestion {
     @Column(name="details")
     private String details;
 
+    /**
+     * @return true if the character "passes" the question.
+     */
+    public boolean passes() {
+        return answer == BooleanAnswer.YES;
+    }
+
     public String toString() {
         return question + ": " + answer;
     }

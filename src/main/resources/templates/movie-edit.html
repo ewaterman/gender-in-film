@@ -8,49 +8,61 @@
 </head>
 <body>
     <section layout:fragment="content">
-        <div class="container">
-            <h2>Add Or Update Movie</h2>
+        <h2>Add Or Update Movie</h2>
 
-            <form th:action="@{/movies/save}" th:object="${movie}" method="POST">
+        <div class="simple-grid" style="grid-template-columns: 1fr 3fr;">
+            <!-- Movie Poster -->
+            <img th:src="${#strings.isEmpty(tmdbMovie.posterPath)} ? @{/images/no-poster-300.jpg} : @{'https://image.tmdb.org/t/p/w300/' + ${tmdbMovie.posterPath}}"
+                 th:alt="|Poster for ${tmdbMovie.title}|"
+                 width="300">
 
-                <!-- Hidden fields. Remember this is both a create and update page. -->
-                <input id="movie-input-id" type="hidden" th:field="*{id}" class="form-control">
-                <input id="movie-input-name" type="hidden" th:field="*{name}" class="form-control">
-                <input id="movie-input-tmdbId" type="hidden" th:field="*{tmdbId}" class="form-control">
+            <!-- Movie Metadata -->
+            <div>
+                <h1 th:with="releaseYear=${#strings.isEmpty(tmdbMovie.releaseDate)} ? '' : | (${#temporals.format(#temporals.createDate(tmdbMovie.releaseDate, 'yyyy-MM-dd'), 'yyyy')})|"
+                    th:utext="|<b>${tmdbMovie.title}</b>${releaseYear}|"></h1>
 
-                <!-- TMDB data -->
-                <h2 th:text="${tmdbMovie.title}"></h2>
-                <img th:src="${#strings.isEmpty(tmdbMovie.posterPath)} ? @{/images/no-poster-300.jpg} : @{'https://image.tmdb.org/t/p/w300/' + ${tmdbMovie.posterPath}}"
-                     th:alt="|Poster for ${tmdbMovie.title}|"
-                     width="300">
+                <p th:text="${tmdbMovie.overview}"></p>
+            </div>
+        </div>
 
-                <!-- Movie questions. -->
-                <div th:each="question, iterator : *{questions}">
+        <form th:action="@{/movies/save}" th:object="${movie}" method="POST">
 
-                    <p th:text="${question.question.displayText}"></p>
-                    <!--<p th:text="${question.question.extendedDisplayText}"></p>-->
+            <!-- Hidden fields. Remember this is both a create and update page. -->
+            <input id="movie-input-id" type="hidden" th:field="*{id}" class="form-control">
+            <input id="movie-input-name" type="hidden" th:field="*{name}" class="form-control">
+            <input id="movie-input-tmdbId" type="hidden" th:field="*{tmdbId}" class="form-control">
 
-                    <input type="hidden" th:field="*{questions[__${iterator.index}__].id}" class="form-control">
-                    <input type="hidden" th:field="*{questions[__${iterator.index}__].question}" class="form-control">
+            <!-- Movie questions. -->
+            <h2>Movie Questions</h2>
+            <div th:each="question, iterator : *{questions}">
+                <input type="hidden" th:field="*{questions[__${iterator.index}__].id}" class="form-control">
+                <input type="hidden" th:field="*{questions[__${iterator.index}__].question}" class="form-control">
 
-                    <label th:for="'movie-question-answer' + ${iterator.index}" class="form-label">Answer</label>
+                <div>
+                    <!-- TODO:  -->
+                    <!-- <p th:text="${question.question.extendedDisplayText}"></p>   https://www.w3schools.com/bootstrap4/bootstrap_tooltip.asp  -->
+                    <label th:for="'movie-question-answer' + ${iterator.index}"
+                           th:utext="|<b>${question.question.displayText} <i class='fa-solid fa-circle-info' style='color: blue;'></i> :</b>|"
+                           class="form-label"></label>
                     <select th:id="'movie-question-answer' + ${iterator.index}"
                             th:field="*{questions[__${iterator.index}__].answer}">
                          <option th:each="answer : ${answerTypes}"
                                  th:value="${answer.name()}"
-                                 th:text="${answer.displayText}"></option>
-                     </select>
+                                 th:text="${movie.questions[__${iterator.index}__].question.getTextForAnswer(answer)}"></option>
+                    </select>
+                </div>
 
-                    <label th:for="'movie-question-details' + ${iterator.index}" class="form-label">Details</label>
+                <div>
+                    <label th:for="'movie-question-details' + ${iterator.index}" class="form-label"><b>Detailed Explanation</b> (optional)<b>:</b></label>
                     <input th:id="'movie-question-details' + ${iterator.index}"
                            th:field="*{questions[__${iterator.index}__].details}"
                            class="form-control"
                            type="text">
                 </div>
+            </div>
 
-                <button type="submit" class="btn btn-info col-2">Save Movie</button>
-            </form>
-        </div>
+            <button type="submit" class="btn btn-info col-2">Save Movie</button>
+        </form>
     </section>
 
 </body>

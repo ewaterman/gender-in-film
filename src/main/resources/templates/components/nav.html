@@ -26,10 +26,10 @@
                 </ul>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="btn btn-outline-danger" sec:authorize="isAuthenticated()" th:href="@{/logout}">
+                        <a class="btn btn-danger" sec:authorize="isAuthenticated()" th:href="@{/logout}">
                             Logout
                         </a>
-                        <a class="btn btn-outline-success" sec:authorize="!isAuthenticated()" th:href="@{/login}">
+                        <a class="btn btn-success" sec:authorize="!isAuthenticated()" th:href="@{/login}">
                             Login
                         </a>
                     </li>

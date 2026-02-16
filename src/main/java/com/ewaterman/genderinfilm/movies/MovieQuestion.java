@@ -37,6 +37,13 @@ public class MovieQuestion {
     @Column(name="details")
     private String details;
 
+    /**
+     * @return true if the movie "passes" the question.
+     */
+    public boolean passes() {
+        return answer == BooleanAnswer.YES;
+    }
+
     public String toString() {
         return question + ": " + answer;
     }

@@ -10,24 +10,59 @@
 <body>
     <section layout:fragment="content">
 
-        <a th:href="@{/movies/{movieId}(movieId=${movieCharacter.movie.id})}">Back to movie</a>
-        <a sec:authorize="hasRole('ROLE_EDITOR')" th:href="@{/movies/{movieId}/characters/{movieCharacterId}/update(movieId=${movieCharacter.movie.id},movieCharacterId=${movieCharacter.id})}">Edit character</a>
+        <a class="btn btn-primary" th:href="@{/movies/{movieId}(movieId=${movieCharacter.movie.id})}">Back to movie</a>
 
-        <form sec:authorize="hasRole('ROLE_EDITOR')"
-              th:action="@{/movies/{movieId}/characters/{movieCharacterId}(movieId=${movieCharacter.movie.id},movieCharacterId=${movieCharacter.id})}"
-              th:method="delete"
-              onsubmit="return confirm('Are you sure you want to delete this character?');">
-            <button type="submit">Delete character</button>
-        </form>
+        <div class="simple-grid" style="grid-template-columns: 1fr 3fr;">
+            <!-- Character Portrait -->
+            <img th:src="@{/images/no-person-1920.jpg}"
+                 th:alt="|Character portrait for ${movieCharacter.character.name}|"
+                 width="300">
 
-        <p th:text="${movieCharacter.character.name}"></p>
+            <!-- Movie Metadata -->
+            <div>
+                <h1 th:text="${movieCharacter.character.name}"></h1>
 
-        <!-- Movie character test results -->
-        <div th:each="question : ${movieCharacter.questions}">
-            <p th:text="${question.question.displayText}"></p>
-            <!-- <p th:text="${question.question.extendedDisplayText}"></p>   https://www.w3schools.com/bootstrap4/bootstrap_tooltip.asp  -->
-            <p th:text="${question.answer}"></p>
-            <p th:text="${question.details}"></p>
+                <!-- Edit character button -->
+                <a class="btn btn-primary"
+                   sec:authorize="hasRole('ROLE_EDITOR')"
+                   th:href="@{/movies/{movieId}/characters/{movieCharacterId}/update(movieId=${movieCharacter.movie.id},movieCharacterId=${movieCharacter.id})}">
+                    Edit Character
+                </a>
+
+                <!-- Delete character button -->
+                <form sec:authorize="hasRole('ROLE_EDITOR')"
+                      style="display: inline;"
+                      th:action="@{/movies/{movieId}/characters/{movieCharacterId}(movieId=${movieCharacter.movie.id},movieCharacterId=${movieCharacter.id})}"
+                      th:method="DELETE"
+                      onsubmit="return confirm('Are you sure you want to delete this character?');">
+                    <button type="submit" class="btn btn-danger">Delete Character</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title" th:text="|Character Score: ${movieCharacter.countPasses()}/${movieCharacter.questions.size()}|"></h2>
+                <div class="simple-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div th:each="question : ${movieCharacter.questions}">
+                        <span th:switch="${question.answer}">
+                            <i th:case="${T(com.ewaterman.genderinfilm.common.BooleanAnswer).YES}"
+                               class="fa-solid fa-circle-check"
+                               style="color: green;"></i>
+                            <i th:case="${T(com.ewaterman.genderinfilm.common.BooleanAnswer).NO}"
+                               class="fa-solid fa-circle-xmark"
+                               style="color: red;"></i>
+                            <i th:case="${T(com.ewaterman.genderinfilm.common.BooleanAnswer).UNCLEAR}"
+                               class="fa-solid fa-circle-question"
+                               style="color: blue;"></i>
+                        </span>
+                        <span th:utext="|<b>${question.question.getTextForAnswer(question.answer)}</b>|"></span>
+                        <span th:if="${not #strings.isEmpty(question.details)}"
+                              th:utext="|<i class='fa-regular fa-comment'></i>|">
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

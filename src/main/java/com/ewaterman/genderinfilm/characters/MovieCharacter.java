@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import com.ewaterman.genderinfilm.movies.Movie;
+import com.ewaterman.genderinfilm.movies.MovieQuestion;
 
 /**
  * Represents a character in a single film. If a character exists in multiple films they will have multiple entries
@@ -36,6 +37,15 @@ public class MovieCharacter {
 
     @OneToMany(mappedBy="movieCharacter", cascade=CascadeType.ALL)
     private List<CharacterQuestion> questions = new ArrayList<>();
+
+    /**
+     * @return The count of questions that the character "passes"
+     */
+    public long countPasses() {
+        return questions.stream()
+                .filter(CharacterQuestion::passes)
+                .count();
+    }
 
     public String toString() {
         return character + " in " + movie;

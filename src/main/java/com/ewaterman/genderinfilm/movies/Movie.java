@@ -8,6 +8,7 @@ import java.util.List;
 import lombok.*;
 
 import com.ewaterman.genderinfilm.characters.MovieCharacter;
+import com.ewaterman.genderinfilm.common.BooleanAnswer;
 
 @Entity
 @Data
@@ -40,6 +41,15 @@ public class Movie {
      */
     @Column(name="tmdb_id", nullable=false)
     private String tmdbId;  //TODO: change to be an Integer type
+
+    /**
+     * @return The count of questions that the movie "passes"
+     */
+    public long countPasses() {
+        return questions.stream()
+                .filter(MovieQuestion::passes)
+                .count();
+    }
 
     public String toString() {
         return name;
