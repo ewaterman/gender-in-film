@@ -96,11 +96,12 @@
 
                     <!-- Question select -->
                     <div class="mb-3">
-                        <!-- TODO:  -->
-                        <!-- <p th:text="${question.question.extendedDisplayText}"></p>   https://www.w3schools.com/bootstrap4/bootstrap_tooltip.asp  -->
                         <label th:for="'character-question-answer' + ${iterator.index}"
-                               th:utext="|<b>${question.question.displayText} <i class='fa-solid fa-circle-info' style='color: blue;'></i></b>|"
+                               th:utext="|<b>${question.question.displayText}</b>|"
                                class="form-label header-label"></label>
+                        <i class="fa-solid fa-circle-info question-tooltip"
+                           data-bs-toggle="tooltip"
+                           th:title="${question.question.extendedDisplayText}"></i>
                         <select th:id="'character-question-answer' + ${iterator.index}"
                                 th:field="*{questions[__${iterator.index}__].answer}"
                                 class="form-select">

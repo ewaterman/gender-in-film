@@ -12,9 +12,13 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/css/main.css}" />
 
+    <!-- Scripts that are required before rendering -->
     <script src="https://kit.fontawesome.com/a07a069798.js" crossorigin="anonymous"></script>
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>  <!-- Version is defined in pom -->
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>  <!-- Version is defined in pom -->
+
+    <!-- Deferred scripts that require the whole page to be rendered -->
+    <script defer th:src="@{/js/tooltips.js}" type="text/javascript"></script>
     <script defer th:src="@{/js/ajaxsearch.js}" type="text/javascript"></script>
 </head>
 <body>

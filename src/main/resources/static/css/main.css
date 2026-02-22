@@ -88,3 +88,7 @@ body {
 .question-div:not(:last-child) {
   margin-bottom: 2rem;
 }
+
+.question-tooltip {
+  color: blue;
+}

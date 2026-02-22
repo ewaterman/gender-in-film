@@ -62,9 +62,10 @@
                                        style="color: blue;"></i>
                                 </span>
                                 <span th:utext="|<b>${question.question.getTextForAnswer(question.answer)}</b>|"></span>
-                                <span th:if="${not #strings.isEmpty(question.details)}"
-                                      th:utext="|<i class='fa-regular fa-comment'></i>|">
-                                </span>
+                                <i th:if="${not #strings.isEmpty(question.details)}"
+                                   class="fa-regular fa-comment"
+                                   data-bs-toggle="tooltip"
+                                   th:title="${question.details}"></i>
                             </div>
                         </div>
                     </div>
