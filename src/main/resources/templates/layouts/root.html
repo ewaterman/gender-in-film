@@ -26,11 +26,7 @@
     <header th:insert="~{components/nav::navbar}"></header>
 
     <!-- Main content -->
-    <main id="root-main">
-        <div id="main-content-container" class="container">
-            <section layout:fragment="content"></section>
-        </div>
-    </main>
+    <main id="main-content-container" class="container" layout:fragment="content"></main>
 
     <!-- Footer -->
     <footer th:replace="~{components/footer::footer}"></footer>

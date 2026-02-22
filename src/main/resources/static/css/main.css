@@ -1,28 +1,90 @@
+:root {
+    --trans-blue: #5BCEFA;
+    --trans-pink: #F5A9B8;
+    --trans-white: #FFFFFF;
+}
+
 body {
-  background-color: #F5A9B8;
+  background-color: var(--trans-white);
+
+  /* Used to push the footer to the bottom of the page */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
-#component-navbar {
-  background-color: #5BCEFA;
+#custom-navbar {
+  background-color: var(--trans-blue);
 }
 
-#component-footer {
-  background-color: #5BCEFA;
-}
-
-#root-main {
-  background-color: #FFFFFF;
+#custom-footer {
+  margin-top: auto;  /* Push to bottom of page */
+  background-color: var(--trans-blue);
 }
 
 #main-content-container {
-  padding: 10px;
+  padding: 0.75rem;
+}
+
+.subsection {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+  }
 }
 
 .simple-grid {
   display: grid;
-  gap: 10px;
+  gap: 0.75rem;
   justify-content: center;  /* column alignment */
   align-content: center;    /* row alignment */
   align-items: center;      /* vertical alignment within cell */
   justify-items: stretch;   /* horizontal alignment within cell */
+}
+
+.custom-a {
+  background-color: transparent;
+
+  &:link, &:visited {
+    color: black;
+    text-decoration: none;
+  }
+  &:hover, &:active {
+    color: var(--trans-pink);
+    text-decoration: underline;
+  }
+}
+
+.header-label {
+  font-size: 1.25rem;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;  /* put the margin on the row itself so all elements are centered */
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+
+  .title-row-buttons {
+    display: inline;
+    margin-left: auto;  /* right aligned */
+  }
+}
+
+.breadcrumb-nav {
+  margin-top: 1rem;
+}
+
+#homepage-content {
+  text-align: center;
+  align-items: center;
+}
+
+.question-div:not(:last-child) {
+  margin-bottom: 2rem;
 }
