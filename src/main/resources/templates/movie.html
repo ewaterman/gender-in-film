@@ -98,7 +98,10 @@
                              th:alt="|Character portrait for ${character.character.name}|">
                         <div class="card-body">
                             <h5 class="card-title" th:utext="|<b>${character.character.name}</b>|"></h5>
-                            <p class="card-text" th:utext="|Actor Name|"></p>
+                            <hr>
+                            <p class="card-text"
+                               style="text-align: center;"
+                               th:utext="|Score: ${character.countPasses()}/${character.questions.size()}|"></p>
                         </div>
                     </a>
                 </div>
