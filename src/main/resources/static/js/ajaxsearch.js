@@ -12,7 +12,6 @@ let render_result = function(html) {
     replaceable_div.fadeTo('slow', 0).promise().then(() => {
         replaceable_div.html(html)
         replaceable_div.fadeTo('slow', 1)
-        search_icon.removeClass('blink')
     })
 }
 
@@ -31,8 +30,6 @@ let ajax_call = function (endpoint, request_parameters) {
 
 // When there's typing in the searchbar, queue up a search request on a delay
 user_input.on('keyup', function () {
-    search_icon.addClass('blink')
-
     // We only want to issue the request if we've stopped typing so if we're still typing, reset the timer.
     if (scheduled_function) {
         clearTimeout(scheduled_function)

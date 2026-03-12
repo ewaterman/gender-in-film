@@ -2,8 +2,10 @@
     <nav id="custom-navbar">
         <div class="navbar navbar-expand-lg container">
             <div class="container-fluid">
+
                 <a class="navbar-brand" th:href="@{/}">Gender In Film</a>
 
+                <!-- Collapse button on mobile -->
                 <button class="navbar-toggler"
                         type="button"
                         data-bs-toggle="collapse"
@@ -14,23 +16,31 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Collapsed down on mobile -->
+                <!-- Section that collapses on mobile -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
                         <li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
-                        <li class="nav-item">
+
+                        <!-- Search bar -->
+                        <li id="nav-search-bar" class="nav-item">
                             <form class="d-flex" role="search" th:action="@{/movies/search}" method="GET">
                                 <label htmlFor="user-input">
                                     <span class="visually-hidden">Search for a movie</span>
                                 </label>
                                 <input id="user-input"
-                                       class="form-control me-2"
+                                       class="form-control"
                                        type="search"
                                        placeholder="Search"
                                        aria-label="Search">
                             </form>
+
+                            <!-- Will be filled with movies that match the above search. -->
+                            <div id="replaceable-content"></div>
                         </li>
                     </ul>
+
+                    <!-- Log in / out buttons -->
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="btn btn-danger" sec:authorize="isAuthenticated()" th:href="@{/logout}">
@@ -45,9 +55,4 @@
             </div>
         </div>
     </nav>
-
-    <!-- Will be filled with movies that match the above search. -->
-    <div id="movie-list-min-container">
-        <div id="replaceable-content"></div>
-    </div>
 </div>
